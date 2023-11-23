@@ -12,7 +12,7 @@ const Get = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3501/getalldata');
+      const response = await axios.get('http://localhost:5500/getalldata');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -21,7 +21,7 @@ const Get = () => {
   
   const deleteUser = async (userId) => {
     try {
-      const response = await axios.delete(`http://localhost:3501/delete/${userId}`);
+      const response = await axios.delete(`http://localhost:5500/delete/${userId}`);
       console.log(response.data);
 
       // After successful deletion, fetch updated data

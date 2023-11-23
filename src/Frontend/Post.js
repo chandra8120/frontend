@@ -26,7 +26,7 @@ const Post= () => {
   
       if (user) {
         console.log('User data to be sent:', user);
-        const response = await axios.post("http://localhost:3501/data", user);
+        const response = await axios.post("http://localhost:5500/data", user);
         console.log(response.data);
       } else {
         console.error('User not found.');

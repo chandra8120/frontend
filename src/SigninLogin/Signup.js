@@ -15,7 +15,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post('http://localhost:3501/signup', { username, password });
+      const response = await axios.post('http://localhost:5500/signup', { username, password });
       console.log(response.data);
     } catch (error) {
       console.error(error.response.data);

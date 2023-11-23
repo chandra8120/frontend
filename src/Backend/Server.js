@@ -3,11 +3,12 @@ const express = require("express");
 const app = express();
 const data = require('./Model');
 const bcrypt = require('bcrypt');
+const cors = require("cors");
 app.use(express.json());                  //middle vare using express js
 
-const cors = require("cors");
-app.use(cors());
 
+
+app.use(cors());
 const corsOptions = {
   origin: 'http://localhost:3000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -16,7 +17,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions))
 
 
 
@@ -25,8 +26,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://chandra_8120:chandra@cluster0.k6nq4jt.mongodb.net/yourDatabaseName?retryWrites=true&w=majority" )
+  .connect("mongodb+srv://chandra_8120:chandra@cluster0.k6nq4jt.mongodb.net/?retryWrites=true&w=majority")
   .then(() => console.log("DB connected..."))
   .catch((error) => console.log("error displayed", error));
 
@@ -95,7 +95,7 @@ app.post('/signup', async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Hash the password before storing it in the database
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
@@ -116,14 +116,14 @@ app.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Find the user by username
+    
     const user = await User.findOne({ username });
 
     if (!user) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
-    // Check if the password is correct
+    
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
@@ -140,5 +140,5 @@ app.post('/login', async (req, res) => {
 
 
 
-app.listen(3501, () => console.log("server running...."))
+app.listen(3200, () => console.log("server running...."))
 
