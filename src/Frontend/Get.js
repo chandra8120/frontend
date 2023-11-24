@@ -12,7 +12,7 @@ const Get = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:5500/getalldata');
+      const response = await axios.get('https://backend-server-2f2a.onrender.com/getalldata');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -21,15 +21,13 @@ const Get = () => {
   
   const deleteUser = async (userId) => {
     try {
-      const response = await axios.delete(`http://localhost:5500/delete/${userId}`);
+      const response = await axios.delete(`https://backend-server-2f2a.onrender.com/delete/${userId}`);
       console.log(response.data);
-
-      // After successful deletion, fetch updated data
       fetchData();
     } catch (error) {
       console.error('Error deleting user:', error);
     }
-  };
+  }  
   
   return (
     <div style={{ background: '#2F539B', height: '100vh', width: '100%', overflowX: 'hidden' }}>

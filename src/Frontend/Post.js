@@ -26,16 +26,18 @@ const Post= () => {
   
       if (user) {
         console.log('User data to be sent:', user);
-        const response = await axios.post("http://localhost:5500/data", user);
+        const response = await axios.post("https://backend-server-2f2a.onrender.com/data",user);
+
         console.log(response.data);
       } else {
         console.error('User not found.');
       }
     } catch (error) {
-      alert("Already user submitted data",error)
+      alert("already  data added", error);
       console.error('Error submitting data:', error);
     }
   };
+  
   
   
   return (

@@ -37,29 +37,41 @@ const Login = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  
-
   const signIn = async () => {
     try {
-      const response = await axios.post('http://localhost:5500/login', { username, password });
+      const response = await axios.post('https://backend-server-2f2a.onrender.com/login', { username, password });
+  
       console.log(response.data);
   
-      if (true) {
-        setData({ username: "", password: "" });
-        navigate('/post');
-      } else {
-       alert('Successful login')
-      }
-    } catch (error) {
+    //   if (response.data.success) {
+    //     setData({ username: "", password: "" });
+    //     navigate('/post');
+    //    
+    //     alert('Successful login');
+    //   }
+    //    else {
+    //     alert('Invalid username or password');
+    //   }
+    // } 
+
+    if (response.data.success) {
+      setData({ username: "", password: "" });
+      
+      alert('Successful login');
+    } else {
+      navigate('/post');
+    }
+  }
+    
+    catch (error) {
       console.error(error.response.data);
-    alert('invalid username password')
+      alert('Invalid username or password');
     }
   };
   
 
   
-
-
+  
   return (
     <div className="main1">
       <div className="first-image">
